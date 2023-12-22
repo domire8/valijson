@@ -1,0 +1,18 @@
+{
+    "name": "valijson",
+    "privileged": true,
+    "remoteUser": "ros2",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": "..",
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros2/.devcontainer,type=bind,consistency=cached",
+    "workspaceFolder": "/home/ros2/.devcontainer",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}

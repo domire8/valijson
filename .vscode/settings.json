@@ -1,0 +1,4 @@
+{
+    "cmake.sourceDirectory": "/home/ros2/.devcontainer",
+    "C_Cpp.clang_format_style": "file:/home/ros2/.clang-format"
+}

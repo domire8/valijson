@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "AMD",
+            "includePath": [
+                "/home/ros2/.devcontainer/include",
+                "/home/ros2/.devcontainer/thirdparty/**/include"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
