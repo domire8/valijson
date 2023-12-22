@@ -3,7 +3,7 @@ project(valijson)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-option(valijson_BUILD_EXAMPLES "Build valijson examples." FALSE)
+option(valijson_BUILD_EXAMPLES "Build valijson examples." TRUE)
 option(valijson_BUILD_TESTS "Build valijson test suite." FALSE)
 option(valijson_EXCLUDE_BOOST "Exclude Boost when building test suite." FALSE)
 option(valijson_USE_EXCEPTIONS "Use exceptions in valijson and included libs." TRUE)
@@ -210,7 +210,7 @@ if(valijson_BUILD_TESTS)
 endif()
 
 if(valijson_BUILD_EXAMPLES)
-    find_package(curlpp)
+    # find_package(curlpp)
     include_directories(SYSTEM)
 
     add_executable(custom_schema
@@ -249,6 +249,10 @@ if(valijson_BUILD_EXAMPLES)
         examples/valijson_nlohmann_bundled_test.cpp
     )
 
+    add_executable(yaml_schema
+        examples/yaml_schema.cpp
+    )
+
     if(curlpp_FOUND)
         include_directories(${curlpp_INCLUDE_DIR})
 
@@ -265,4 +269,5 @@ if(valijson_BUILD_EXAMPLES)
     target_link_libraries(array_iteration_template_fn jsoncpp)
     target_link_libraries(object_iteration jsoncpp)
     target_link_libraries(json_pointers)
+    target_link_libraries(yaml_schema yamlcpp)
 endif()

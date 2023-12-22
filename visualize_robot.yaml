@@ -1,0 +1,25 @@
+# This example loads a hardware interface with a "broadcaster"
+# controller and associated interface component to publish the
+# robot state for the "RViz" viewer.
+#
+# Terminal 1:
+# ./run-interactive.sh
+# ros2@lasa:~/examples$ launch apps/visualize_robot.yaml
+#
+# Terminal 2:
+# ./connect.sh
+# ros2@lasa:~/examples$ rviz2 -d rviz/robot_and_markers.rviz
+
+on_start:
+  load:
+    - { hardware: robot, controller: broadcaster }
+  switch_controllers:
+    - { hardware: robot, activate: [ broadcaster ] }
+
+hardware:
+  robot:
+    urdf: /home/ros2/examples/urdf/kinova_gen3.urdf
+    rate: 50
+    controllers:
+      broadcaster:
+        plugin: modulo_controllers/RobotStateBroadcaster

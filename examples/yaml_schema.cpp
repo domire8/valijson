@@ -8,9 +8,9 @@
 #include <iostream>
 #include <stdexcept>
 
-#include <valijson/adapters/rapidjson_adapter.hpp>
+#include <valijson/adapters/nlohmann_json_adapter.hpp>
 #include <valijson/adapters/yaml_cpp_adapter.hpp>
-#include <valijson/utils/rapidjson_utils.hpp>
+#include <valijson/utils/nlohmann_json_utils.hpp>
 #include <valijson/schema.hpp>
 #include <valijson/schema_parser.hpp>
 #include <valijson/validation_results.hpp>
@@ -23,7 +23,7 @@ using valijson::Schema;
 using valijson::SchemaParser;
 using valijson::Validator;
 using valijson::ValidationResults;
-using valijson::adapters::RapidJsonAdapter;
+using valijson::adapters::NlohmannJsonAdapter;
 using valijson::adapters::YamlCppAdapter;
 
 int main(int argc, char *argv[])
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     }
 
     // Load the document containing the schema
-    rapidjson::Document schemaDocument;
+    nlohmann::json schemaDocument;
     if (!valijson::utils::loadDocument(argv[1], schemaDocument)) {
         cerr << "Failed to load schema document." << endl;
         return 1;
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     // Parse the json schema into an internal schema format
     Schema schema;
     SchemaParser parser;
-    RapidJsonAdapter schemaDocumentAdapter(schemaDocument);
+    NlohmannJsonAdapter schemaDocumentAdapter(schemaDocument);
     try {
         parser.populateSchema(schemaDocumentAdapter, schema);
     } catch (std::exception &e) {
